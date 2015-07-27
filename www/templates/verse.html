@@ -1,0 +1,162 @@
+<ion-view view-title="Add New" ng-init="init()" ng-controller="verseCtrl">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon" on-tap="changeFont($event)">
+    <i class="icon-font-size"></i>
+    </button>
+    <button class="button button-icon button-clear">Save
+    </button>
+  </ion-nav-buttons>
+  <ion-header-bar class="bar-subheader">
+  <div class="buttons">
+  <button class="button button-icon button-clear ion-arrow-left-a button-positive" on-tap="shareVerse()">
+  </button>
+  <span class="padding"></span>
+  <button class="button button-icon button-clear ion-arrow-right-a button-positive" on-tap="closeKeyboard()">
+  </button>
+  </div>
+  <div class="title centerButtons">
+  </div>
+  <div class="buttons">
+  <span class="padding"></span>
+  <button class="button button-clear button-positive">
+  <i class="icon ion-ios-heart-outline"></i>
+  </button>
+  </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Reference</span>
+        <span class="item-note padding">Enter a topic to associate to the verse</span>
+        <input type="search" placeholder="eg. John 3:16-17" id="reference" autocomplete="off" ng-model="verse.reference" ng-Enter="findVerse()">
+      </label>
+      <label class="item item-input item-stacked-label">
+      <span class="input-label">Topic</span>
+      <span class="item-note padding">Enter a topic to associate to the verse</span>
+      <input type="text" placeholder="e.g. Discipleship, love" autocomplete="off">
+      </label>
+      <label class="item item-input item-stacked-label">
+      <span class="input-label">
+      Passage&nbsp;&nbsp;<span ng-if="verse.selectedBibleversion" style="font-weight: normal;font-size:10px; font-style: italic">(Source: {{ verse.selectedBibleversion }})</span>
+      </span><span class="item-note padding-right">
+      <button class="button button-small button-light" on-tap="selectBible()">
+      &nbsp; {{ verse.bibleversion }}
+      <i class="ion-ios-arrow-down"></i>
+      </button>
+      </span>
+      <span class="item-note padding"></span>
+      <div on-hold="selectVerse()" ng-class="!verseSelected ? 'item-text-wrap padding-right':'item-text-wrap padding-right selected'" ng-bind-html="verse.passage" style="font-size:{{ settings.fontSize }}px">
+      </div>
+      </label>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="bar-light" keyboard-attach>
+    <table width="100%">
+    <tr>
+    <td width="15%" align="left">
+    <button class="button button-icon button-clear ion-ios-upload-outline button-positive" on-tap="shareVerse()">
+    </button>
+    </td><td width="15%" align="left">
+    <button class="button button-icon button-clear icon-move-down button-positive" on-tap="closeKeyboard()">
+    </button>
+    </td><td width="40%" align="center">
+    <button ng-if="verse.chapter" class="button button-small button-outline button-positive" on-tap="vewChapter()">Read Chapter</button>
+
+    </td><td width="15%" align="right">
+    <button class="button button-icon button-clear ion-ios-play button-positive" on-tap="changeFont()">
+    </button>
+    </td><td width="15%" align="right">
+    <button class="button button-clear button-positive" on-tap="findVerse()">
+    <i class="icon ion-ios-search"></i>
+    </button>
+    </td>
+    </tr>
+    </table>
+  </ion-footer-bar>
+</ion-view>
+
+<!--<ion-modal-view ng-controller="verseCtrl" ng-class="{'bar-subheader-slide-away': slideHeader}">-->
+  <!--<ion-header-bar class="bar-positive">-->
+    <!--<button class="button button-icon button-clear ion-ios-arrow-back" on-tap="closeWindow()">-->
+    <!--</button>-->
+    <!--<div class="title">Add New</div>-->
+    <!--<div class="buttons">-->
+      <!--<button class="button button-icon" on-tap="changeFont($event)">-->
+        <!--<i class="icon-font-size"></i>-->
+      <!--</button>-->
+      <!--<button class="button button-icon button-clear">Save-->
+      <!--</button>-->
+    <!--</div>-->
+  <!--</ion-header-bar>-->
+  <!--<ion-header-bar class="bar-subheader">-->
+    <!--<div class="buttons">-->
+      <!--<button class="button button-icon button-clear ion-arrow-left-a button-positive" on-tap="shareVerse()">-->
+      <!--</button>-->
+      <!--<span class="padding"></span>-->
+      <!--<button class="button button-icon button-clear ion-arrow-right-a button-positive" on-tap="closeKeyboard()">-->
+      <!--</button>-->
+    <!--</div>-->
+    <!--<div class="title centerButtons">-->
+    <!--</div>-->
+    <!--<div class="buttons">-->
+      <!--<span class="padding"></span>-->
+      <!--<button class="button button-clear button-positive">-->
+        <!--<i class="icon ion-ios-heart-outline"></i>-->
+      <!--</button>-->
+    <!--</div>-->
+  <!--</ion-header-bar>-->
+  <!--<ion-content has-bouncing="true">-->
+    <!--<div class="list">-->
+      <!--<span class="reference">Reference</span>-->
+      <!--<div class="item item-input-inset">-->
+        <!--<label class="item-input-wrapper">-->
+          <!--<input type="search" autofocus="true" autocorrect="off" autocomplete="off" id="reference" placeholder="eg. John 3:16-17" ng-model="verse.reference" ng-Enter="findVerse()">-->
+        <!--</label>-->
+        <!--<button class="button button-clear button-positive" on-tap="toolTips()">-->
+          <!--<i class="icon ion-ios-information-outline" ></i>-->
+        <!--</button>-->
+      <!--</div>-->
+      <!--<label class="item item-input item-stacked-label">-->
+        <!--<span class="input-label">Topic</span>-->
+        <!--<span class="item-note padding">Enter a topic to associate to the verse</span>-->
+        <!--<input type="text" placeholder="e.g. Discipleship, love" autocomplete="off">-->
+      <!--</label>-->
+      <!--<label class="item item-input item-stacked-label">-->
+        <!--<span class="input-label">-->
+          <!--Passage&nbsp;&nbsp;<span ng-if="verse.selectedBibleversion" style="font-weight: normal;font-size:10px; font-style: italic">(Source: {{ verse.selectedBibleversion }})</span>-->
+        <!--</span><span class="item-note padding-right">-->
+          <!--<button class="button button-small button-light" on-tap="selectBible()">-->
+            <!--&nbsp; {{ verse.bibleversion }}-->
+            <!--<i class="ion-ios-arrow-down"></i>-->
+          <!--</button>-->
+        <!--</span>-->
+        <!--<span class="item-note padding"></span>-->
+        <!--<div on-hold="selectVerse()" ng-class="!verseSelected ? 'item-text-wrap padding-right':'item-text-wrap padding-right selected'" ng-bind-html="verse.passage" style="font-size:{{ settings.fontSize }}px">-->
+        <!--</div>-->
+      <!--</label>-->
+    <!--</div>-->
+  <!--</ion-content>-->
+  <!--<ion-footer-bar class="bar-light" keyboard-attach>-->
+    <!--<table width="100%">-->
+      <!--<tr>-->
+        <!--<td width="15%" align="left">-->
+          <!--<button class="button button-icon button-clear ion-ios-upload-outline button-positive" on-tap="shareVerse()">-->
+          <!--</button>-->
+        <!--</td><td width="15%" align="left">-->
+        <!--<button class="button button-icon button-clear icon-move-down button-positive" on-tap="closeKeyboard()">-->
+        <!--</button>-->
+        <!--</td><td width="40%" align="center">-->
+        <!--<button ng-if="verse.chapter" class="button button-small button-outline button-positive" on-tap="vewChapter()">Read Chapter</button>-->
+
+        <!--</td><td width="15%" align="right">-->
+        <!--<button class="button button-icon button-clear ion-ios-play button-positive" on-tap="changeFont()">-->
+        <!--</button>-->
+        <!--</td><td width="15%" align="right">-->
+        <!--<button class="button button-clear button-positive" on-tap="findVerse()">-->
+        <!--<i class="icon ion-ios-search"></i>-->
+        <!--</button>-->
+        <!--</td>-->
+      <!--</tr>-->
+    <!--</table>-->
+  <!--</ion-footer-bar>-->
+<!--</ion-modal-view>-->

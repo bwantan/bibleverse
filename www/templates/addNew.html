@@ -1,0 +1,54 @@
+<ion-view view-title="Add New" ng-init="init()" ng-controller="addNewCtrl">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear">Save
+    </button>
+  </ion-nav-buttons>
+  <ion-header-bar class="bar-subheader item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="eg. John 3:16-17" id="reference" autocomplete="off" ng-model="verse.reference" ng-Enter="findVerse()">
+      </label>
+    <button class="button button-small button-light" on-tap="selectBible()">
+      &nbsp; {{ verse.bibleversion }}
+      <i class="ion-ios-arrow-down"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Topic</span>
+        <input type="text" placeholder="e.g. Discipleship, love" autocomplete="off">
+      </label>
+    </div>
+    <div class="card" ng-if="newVerses.length > 0">
+      <div  ng-repeat="newVerse in newVerses">
+        <div class="item item-divider">
+          <table style="width:100%">
+            <tr>
+              <td style="text-align: left;width: 70%;">
+                {{ newVerse.reference }}
+              </td>
+              <td style="text-align: right;">
+                <a on-tap="newVerses.splice($index, 1)">
+                  <i class="icon ion-ios-minus assertive"></i>
+                </a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="item item-text-wrap">
+          <p ng-bind-html="newVerse.passage">
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="bar-light" keyboard-attach>
+    <div class="title"></div>
+    <div class="buttons">
+      <button class="button button-clear button-positive" on-tap="findVerse()">
+        <i class="icon ion-ios-search"></i>
+      </button>
+      </div>
+  </ion-footer-bar>
+</ion-view>

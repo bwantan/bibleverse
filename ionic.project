@@ -1,0 +1,29 @@
+{
+  "name": "bibleverse",
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/bgw",
+      "proxyUrl": "https://www.biblegateway.com/passage"
+    },
+    {
+      "path": "/bible",
+      "proxyUrl": "https://www.bible.com/bible"
+    }
+  ],
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ],
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
+}

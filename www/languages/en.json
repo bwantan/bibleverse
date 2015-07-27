@@ -1,0 +1,23 @@
+{
+    "MENU": {
+        "Title": "Memory Verse",
+        "Verses": "Verses",
+        "Me": "Me",
+        "Settings": "Settings",
+        "Help": "Help",
+        "About": "About"
+
+    },
+    "VERSE_LIST": {
+        "1": "Favourite",
+        "2": "New",
+        "3": "Due",
+        "4": "Known",
+        "5": "All",
+        "6": "Edit",
+        "7": "Done"
+    },
+    "VERSE": {
+        "1": "Add New"
+    }
+}

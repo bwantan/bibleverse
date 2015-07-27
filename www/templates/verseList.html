@@ -1,0 +1,112 @@
+<ion-view view-title="<i class='icon ion-ios-book'></i> Verses" ng-init="init()" ng-controller="verseListCtrl">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear" on-tap="editMode()">{{ editText }}
+    </button>
+  </ion-nav-buttons>
+  <ion-content scroll="false">
+    <ion-tabs class="tabs-stable tabs-icon-bottom" ng-class="!edit ? 'tabs-light tabs-icon-bottom':'tabs-light tabs-icon-bottom tabs-item-hide'">
+      <ion-tab title="Favorite" icon-on="ion-ios-heart positive" icon-off="ion-ios-heart-outline positive" badge="3" badge-style="badge-dark">
+        <ion-content has-bouncing="true" overflow:auto>
+          <h1></h1>
+          <ion-list>
+            <ion-item>1</ion-item>
+            <ion-item>2</ion-item>
+            <ion-item>3</ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-tab>
+      <ion-tab title="New" icon-on="ion-ios-plus positive" icon-off="ion-ios-plus-outline positive" badge="3" badge-style="badge-dark">
+        <ion-content has-bouncing="true" overflow:auto>
+          <ion-list can-swipe="!edit">
+            <ion-item ng-class="edit ? 'item item-checkbox' : 'item'">
+              <label ng-if="edit" class="checkbox">
+                <input type="checkbox">
+              </label>
+              John 3:16
+              <span class="item-note">
+                <div>NKJV</div>
+              </span>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-tab>
+      <ion-tab title="Due" icon-on="ion-ios-clock positive" icon-off="ion-ios-clock-outline positive" badge="1" badge-style="badge-dark">
+        <ion-content has-bouncing="true" overflow:auto>
+          <ion-list>
+            <ion-item href=""#>1</ion-item>
+            <ion-item>2</ion-item>
+            <ion-item>3</ion-item>
+            <ion-item>4</ion-item>
+            <ion-item>5</ion-item>
+            <ion-item>6</ion-item>
+            <ion-item>7</ion-item>
+            <ion-item>8</ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-tab>
+      <ion-tab title="Known" icon-on="ion-ios-checkmark positive" icon-off="ion-ios-checkmark-outline positive" badge="600" badge-style="badge-dark">
+        <ion-content has-bouncing="true" overflow:auto>
+          <ion-list>
+            <ion-item>1</ion-item>
+            <ion-item>2</ion-item>
+            <ion-item>3</ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-tab>
+      <ion-tab title="All" icon-on="ion-ios-list positive" icon-off="ion-ios-list-outline positive" badge="3" badge-style="badge-dark">
+        <ion-content has-bouncing="true" overflow:auto>
+          <ion-list>
+            <ion-item>1</ion-item>
+            <ion-item>2</ion-item>
+            <ion-item>3</ion-item>
+            <ion-item>4</ion-item>
+            <ion-item>5</ion-item>
+            <ion-item>6</ion-item>
+            <ion-item>7</ion-item>
+            <ion-item>8</ion-item>
+            <ion-item>9</ion-item>
+            <ion-item>10</ion-item>
+            <ion-item>11</ion-item>
+            <ion-item>12</ion-item>
+            <ion-item>13</ion-item>
+            <ion-item>14</ion-item>
+            <ion-item>15</ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-tab>
+    </ion-tabs>
+  </ion-content>
+  <ion-footer-bar class="bar-light" ng-if="edit">
+    <div class="buttons">
+      <button class="button button-icon button-clear ion-arrow-left-a">
+      </button>
+      <button class="button button-icon button-clear ion-arrow-right-a">
+      </button>
+    </div>
+
+    <div class="title"></div>
+    <div class="buttons">
+      <button class="button button-icon button-clear ion-ios-trash-outline">
+      </button>
+    </div>
+  </ion-footer-bar>
+  <div class="speed-dial padding">
+      <table>
+        <tr>
+          <td>
+            <button class="button round_image button icon button-calm ion-ios-plus-empty icon-positive" on-tap="addVerse()"></button>
+          </td>
+        </tr>
+        <tr height="10px">
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="button round_image button icon button-calm ion-ios-browsers-outline" on-tap="translate()"></button>
+          </td>
+        </tr>
+      </table>
+  </div>
+</ion-view>
